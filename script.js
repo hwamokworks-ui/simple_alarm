@@ -269,7 +269,51 @@
     ringingAlarm = null;
   });
 
+  const WEATHER_LAT = 37.5665;
+  const WEATHER_LON = 126.9780;
+  const WEATHER_LOCATION_NAME = '서울';
+  const WEATHER_API_KEY = 'ba218008287000c04ccb04830d695f48';
+  const weatherTempEl = document.getElementById('weatherTemp');
+  const weatherIconEl = document.getElementById('weatherIcon');
+
+  function describeWeather(id) {
+    if (id >= 200 && id < 300) return '천둥번개';
+    if (id >= 300 && id < 400) return '이슬비';
+    if (id >= 500 && id < 600) return '비';
+    if (id >= 600 && id < 700) return '눈';
+    if (id >= 700 && id < 800) return '안개';
+    if (id === 800) return '맑음';
+    if (id === 801) return '구름 조금';
+    if (id === 802 || id === 803) return '구름 많음';
+    if (id === 804) return '흐림';
+    return '';
+  }
+
+  async function loadWeather() {
+    try {
+      const url = `https://api.openweathermap.org/data/2.5/weather?lat=${WEATHER_LAT}&lon=${WEATHER_LON}&appid=${WEATHER_API_KEY}&units=metric`;
+      const res = await fetch(url);
+      if (!res.ok) throw new Error('weather request failed');
+      const data = await res.json();
+      const icon = data.weather && data.weather[0] && data.weather[0].icon;
+      const id = data.weather && data.weather[0] && data.weather[0].id;
+      const desc = describeWeather(id);
+
+      if (icon) {
+        weatherIconEl.src = `https://openweathermap.org/img/wn/${icon}@2x.png`;
+        weatherIconEl.alt = desc;
+        weatherIconEl.classList.remove('hidden');
+      }
+      weatherTempEl.textContent = `${WEATHER_LOCATION_NAME} ${Math.round(data.main.temp)}°C${desc ? ` · ${desc}` : ''}`;
+    } catch (e) {
+      weatherIconEl.classList.add('hidden');
+      weatherTempEl.textContent = '기온 정보를 불러올 수 없습니다.';
+    }
+  }
+
   renderAlarms();
   tickClock();
   setInterval(tickClock, 1000);
+  loadWeather();
+  setInterval(loadWeather, 10 * 60 * 1000);
 })();
