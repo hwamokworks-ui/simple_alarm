@@ -204,6 +204,19 @@
         /* ignore */
       }
     }
+
+    playNewsBriefing();
+  }
+
+  async function playNewsBriefing() {
+    try {
+      const data = await NewsFeature.fetchRecentNews('속보', 3);
+      const items = data.items || [];
+      NewsFeature.renderNewsBriefing(items);
+      NewsFeature.speakBriefing(NewsFeature.buildBriefingText(items));
+    } catch (e) {
+      /* 뉴스 브리핑 실패는 알람 소리 재생에 영향을 주지 않는다 */
+    }
   }
 
   function startBeep() {
@@ -245,6 +258,7 @@
 
   stopBtn.addEventListener('click', () => {
     stopBeep();
+    NewsFeature.stopBriefing();
     overlay.classList.add('hidden');
     ringingAlarm = null;
     renderAlarms();
@@ -252,6 +266,7 @@
 
   snoozeBtn.addEventListener('click', () => {
     stopBeep();
+    NewsFeature.stopBriefing();
     overlay.classList.add('hidden');
     const snoozeTime = new Date(Date.now() + 5 * 60 * 1000);
     const snoozed = {
@@ -309,6 +324,15 @@
       weatherIconEl.classList.add('hidden');
       weatherTempEl.textContent = '기온 정보를 불러올 수 없습니다.';
     }
+  }
+
+  const newsBtn = document.getElementById('newsBtn');
+  if (newsBtn) {
+    newsBtn.addEventListener('click', async () => {
+      NewsFeature.renderNewsLoading();
+      const data = await NewsFeature.fetchRecentNews('속보');
+      NewsFeature.renderNewsList(data.items || []);
+    });
   }
 
   renderAlarms();

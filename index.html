@@ -5,6 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>간편 알람</title>
 <link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="news/news.css">
 </head>
 <body>
   <div class="app">
@@ -41,6 +42,14 @@
       <ul id="alarmList" class="alarm-list"></ul>
       <p id="emptyMsg" class="empty-msg">등록된 알람이 없습니다.</p>
     </section>
+
+    <section class="news-section">
+      <div class="news-header">
+        <h2>최근뉴스</h2>
+        <button type="button" id="newsBtn" class="news-btn">최근뉴스</button>
+      </div>
+      <div id="newsList" class="news-list"></div>
+    </section>
   </div>
 
   <div id="ringingOverlay" class="ringing-overlay hidden">
@@ -48,6 +57,7 @@
       <div class="ringing-icon">🔔</div>
       <div class="ringing-time" id="ringingTime"></div>
       <div class="ringing-label" id="ringingLabel"></div>
+      <div id="newsBriefing" class="news-briefing"></div>
       <div class="ringing-actions">
         <button id="snoozeBtn">5분 후 다시 알림</button>
         <button id="stopBtn">끄기</button>
@@ -60,6 +70,8 @@
     <span id="weatherTemp">기온 불러오는 중...</span>
   </footer>
 
+  <script src="config.js"></script>
+  <script src="news/news.js"></script>
   <script src="script.js"></script>
 </body>
 </html>
