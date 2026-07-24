@@ -22,7 +22,7 @@ export function SaveAlarmsButton({ alarms }: { alarms: Alarm[] }) {
         disabled={status === "saving"}
         onClick={() => saveNow(alarms)}
       >
-        지금 저장
+        등록된 알림 저장
       </Button>
       {statusText && (
         <p className="text-center text-sm text-muted-foreground">{statusText}</p>
