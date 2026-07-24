@@ -1,5 +1,6 @@
 import { Card, CardContent, CardHeader } from "@/components/ui/card"
 import { AlarmListItem } from "@/features/alarm/components/AlarmListItem"
+import { SaveAlarmsButton } from "@/features/alarm/components/SaveAlarmsButton"
 import type { Alarm } from "@/features/alarm/types"
 
 export function AlarmList({
@@ -33,6 +34,7 @@ export function AlarmList({
             ))}
           </ul>
         )}
+        <SaveAlarmsButton alarms={alarms} />
       </CardContent>
     </Card>
   )

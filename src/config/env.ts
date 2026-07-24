@@ -8,3 +8,7 @@ export const SUPABASE_NEWS_FUNCTION_URL =
 export const SUPABASE_ANON_KEY =
   import.meta.env.VITE_SUPABASE_ANON_KEY ||
   "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InhtZWttZ2Z3emJ4dWFucXR0aGh6Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODM2NTYzNjEsImV4cCI6MjA5OTIzMjM2MX0.D7VgdC83IhUFRNYWQV9c7313ESLHAh20PenaFPxFZY0"
+
+// Apps Script 웹 앱 배포 URL. 아래 기본값(빈 문자열)을 실제 배포 URL로 바꿔 넣거나,
+// .env 파일에 VITE_APPS_SCRIPT_URL=https://script.google.com/macros/s/.../exec 를 추가한다.
+export const APPS_SCRIPT_URL = import.meta.env.VITE_APPS_SCRIPT_URL || "https://script.google.com/macros/s/AKfycbwBrl8VaWe9N2dVvs2DFrVA59OmcQz61xU6MzdW_lA6jDW8xBu5T3QsFwsH2avanhmaEA/exec"
