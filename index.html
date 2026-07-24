@@ -1,77 +1,13 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="ko">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>간편 알람</title>
-<link rel="stylesheet" href="style.css">
-<link rel="stylesheet" href="news/news.css">
-</head>
-<body>
-  <div class="app">
-    <header class="app-header">
-      <h1>
-        <svg class="app-icon" viewBox="0 0 24 24" width="26" height="26" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-          <circle cx="12" cy="13" r="8" />
-          <path d="M12 9v4l3 2" />
-          <path d="M5 3 2 6" />
-          <path d="M19 3l3 3" />
-        </svg>
-        간편 알람
-      </h1>
-      <div class="clock" id="clock">--:--:--</div>
-    </header>
-
-    <section class="add-alarm">
-      <input type="time" id="alarmTime" />
-      <input type="text" id="alarmLabel" placeholder="라벨 (선택)" maxlength="20" />
-      <div class="repeat-days" id="repeatDays">
-        <button type="button" class="day-btn" data-day="0">일</button>
-        <button type="button" class="day-btn" data-day="1">월</button>
-        <button type="button" class="day-btn" data-day="2">화</button>
-        <button type="button" class="day-btn" data-day="3">수</button>
-        <button type="button" class="day-btn" data-day="4">목</button>
-        <button type="button" class="day-btn" data-day="5">금</button>
-        <button type="button" class="day-btn" data-day="6">토</button>
-      </div>
-      <button id="addBtn" class="add-btn">알람 추가</button>
-    </section>
-
-    <section class="alarm-list-section">
-      <h2>등록된 알람</h2>
-      <ul id="alarmList" class="alarm-list"></ul>
-      <p id="emptyMsg" class="empty-msg">등록된 알람이 없습니다.</p>
-    </section>
-
-    <section class="news-section">
-      <div class="news-header">
-        <h2>최근뉴스</h2>
-        <button type="button" id="newsBtn" class="news-btn">최근뉴스</button>
-      </div>
-      <div id="newsList" class="news-list"></div>
-    </section>
-  </div>
-
-  <div id="ringingOverlay" class="ringing-overlay hidden">
-    <div class="ringing-box">
-      <div class="ringing-icon">🔔</div>
-      <div class="ringing-time" id="ringingTime"></div>
-      <div class="ringing-label" id="ringingLabel"></div>
-      <div id="newsBriefing" class="news-briefing"></div>
-      <div class="ringing-actions">
-        <button id="snoozeBtn">5분 후 다시 알림</button>
-        <button id="stopBtn">끄기</button>
-      </div>
-    </div>
-  </div>
-
-  <footer class="weather-footer">
-    <img id="weatherIcon" class="weather-icon hidden" src="" alt="" />
-    <span id="weatherTemp">기온 불러오는 중...</span>
-  </footer>
-
-  <script src="config.js"></script>
-  <script src="news/news.js"></script>
-  <script src="script.js"></script>
-</body>
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>간편 알람</title>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
 </html>

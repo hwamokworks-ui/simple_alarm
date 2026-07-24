@@ -1,4 +1,0 @@
-window.APP_CONFIG = {
-  SUPABASE_NEWS_FUNCTION_URL: 'https://xmekmgfwzbxuanqtthhz.supabase.co/functions/v1/naver-news',
-  SUPABASE_ANON_KEY: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InhtZWttZ2Z3emJ4dWFucXR0aGh6Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODM2NTYzNjEsImV4cCI6MjA5OTIzMjM2MX0.D7VgdC83IhUFRNYWQV9c7313ESLHAh20PenaFPxFZY0',
-};
