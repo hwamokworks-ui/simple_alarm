@@ -1,26 +1,30 @@
-import { useState } from "react"
+import { useEffect, useState } from "react"
 
 import { saveAlarmsToAppsScript } from "@/features/alarm/lib/alarm-remote-save"
-import { pad } from "@/features/alarm/lib/alarm-utils"
 import type { Alarm } from "@/features/alarm/types"
 
 type SaveStatus = "idle" | "saving" | "success" | "error"
 
+const SUCCESS_MESSAGE_DURATION_MS = 3000
+
 export function useSaveAlarms() {
   const [status, setStatus] = useState<SaveStatus>("idle")
-  const [savedAt, setSavedAt] = useState<string | null>(null)
+
+  useEffect(() => {
+    if (status !== "success") return
+    const id = window.setTimeout(() => setStatus("idle"), SUCCESS_MESSAGE_DURATION_MS)
+    return () => clearTimeout(id)
+  }, [status])
 
   async function saveNow(alarms: Alarm[]) {
     setStatus("saving")
     try {
       await saveAlarmsToAppsScript(alarms)
-      const now = new Date()
-      setSavedAt(`${pad(now.getHours())}:${pad(now.getMinutes())}:${pad(now.getSeconds())}`)
       setStatus("success")
     } catch {
       setStatus("error")
     }
   }
 
-  return { status, savedAt, saveNow }
+  return { status, saveNow }
 }

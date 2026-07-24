@@ -3,13 +3,13 @@ import { useSaveAlarms } from "@/features/alarm/hooks/useSaveAlarms"
 import type { Alarm } from "@/features/alarm/types"
 
 export function SaveAlarmsButton({ alarms }: { alarms: Alarm[] }) {
-  const { status, savedAt, saveNow } = useSaveAlarms()
+  const { status, saveNow } = useSaveAlarms()
 
   const statusText =
     status === "saving"
       ? "저장 중..."
       : status === "success"
-        ? `저장되었습니다 (${savedAt})`
+        ? "저장되었습니다"
         : status === "error"
           ? "저장에 실패했습니다"
           : null

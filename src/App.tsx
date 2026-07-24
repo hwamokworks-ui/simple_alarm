@@ -25,7 +25,10 @@ function App() {
   return (
     <div
       className="flex min-h-screen justify-center bg-background bg-cover bg-fixed bg-center px-4 pt-6 pb-20"
-      style={{ backgroundImage: "url(/images/luca-bravo-ESkw2ayO2As-unsplash.jpg)" }}
+      style={{
+        backgroundImage:
+          "linear-gradient(rgba(0,0,0,0.9), rgba(0,0,0,0.3)), url(/images/jonatan-pie-FOcMXBbe5rU-unsplash.jpg)",
+      }}
     >
       <div className="w-full max-w-md">
         <div className="mb-6 flex flex-col gap-4 rounded-2xl border bg-card/90 p-4.5 backdrop-blur-md">
