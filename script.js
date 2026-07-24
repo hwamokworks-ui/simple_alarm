@@ -23,10 +23,29 @@
 
   let audioCtx = null;
   let beepTimer = null;
+  let audioUnlocked = false;
 
   if ('Notification' in window && Notification.permission === 'default') {
     Notification.requestPermission();
   }
+
+  function unlockAudio() {
+    if (audioUnlocked) return;
+    audioUnlocked = true;
+
+    if (!audioCtx) {
+      const AudioContextClass = window.AudioContext || window.webkitAudioContext;
+      audioCtx = new AudioContextClass();
+    }
+    if (audioCtx.state === 'suspended') {
+      audioCtx.resume();
+    }
+    NewsFeature.speakBriefing(' ');
+  }
+
+  document.addEventListener('click', unlockAudio, { once: true });
+  document.addEventListener('keydown', unlockAudio, { once: true });
+  document.addEventListener('touchstart', unlockAudio, { once: true });
 
   function loadAlarms() {
     try {

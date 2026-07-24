@@ -1,7 +1,7 @@
 import "jsr:@supabase/functions-js/edge-runtime.d.ts";
 
 const ALLOWED_ORIGINS = [
-  "https://hwamokworks-ui.github.io",
+  "https://simple-alarm-taupe.vercel.app",
   "http://localhost:8080",
 ];
 
@@ -62,7 +62,13 @@ Deno.serve(async (req: Request) => {
       throw new Error(`Naver API responded with ${naverRes.status}`);
     }
 
-    const data = await naverRes.json();
+    const buffer = await naverRes.arrayBuffer();
+    const contentType = naverRes.headers.get("content-type") ?? "";
+    const charsetMatch = contentType.match(/charset=([^;]+)/i);
+    const charset = (charsetMatch ? charsetMatch[1] : "utf-8").trim().toLowerCase();
+    const text = new TextDecoder(charset).decode(buffer);
+    const data = JSON.parse(text);
+
     return new Response(JSON.stringify(data), {
       headers: { ...CORS_HEADERS, "Content-Type": "application/json" },
     });
